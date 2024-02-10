@@ -1,18 +1,21 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       backgroundImage: {
-        landingPrimary: "url('~/public/Images/bg-img.jpeg')",
-      },
+        landingPrimary: "url('~/public/images/primary-background.png')"
+      }
     },
+    fontFamily: {
+      sans: ['Adelle Sans', 'sans-serif']
+    }
   },
-  plugins: [],
+  plugins: []
 };
 export default config;
