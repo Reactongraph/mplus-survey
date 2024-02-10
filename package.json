@@ -11,17 +11,26 @@
     "prepare": "husky install  && chmod +x .husky/"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.0",
     "axios": "^1.6.7",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.1",
+    "mongoose": "^8.1.1",
+    "mongoose-sequence": "^6.0.1",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.0",
     "@types/babel__core": "^7.20.5",
+    "@types/crypto-js": "^4.2.2",
+    "@types/mongoose-sequence": "^3.0.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/validator": "^13.11.9",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8.56.0",

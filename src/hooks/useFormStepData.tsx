@@ -8,6 +8,7 @@ const useFormStepData = (stepNumber: number) => {
 
   useEffect(() => {
     setFormStepData(formElementByStep[stepNumber]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return formStepData;

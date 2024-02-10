@@ -22,6 +22,7 @@ const Result = ({ params }: { params: { id: string } }) => {
     if (coupon && providerData) {
       setCouponData({ ...coupon, providerData });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCopy = async (code: string) => {
