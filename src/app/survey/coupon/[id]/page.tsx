@@ -17,6 +17,7 @@ const Coupon = ({ params }: { params: { id: string } }) => {
     request('POST', `transaction`, {
       couponId: id
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

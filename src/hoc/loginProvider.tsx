@@ -17,6 +17,7 @@ const loginProvider = (Component: React.FC) => {
       if (response) {
         router.push('/join/success');
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [response]);
 
     return <Component login={login} isLoading={isLoading} {...props} />;

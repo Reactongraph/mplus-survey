@@ -14,6 +14,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
 
   useEffect(() => {
     request('GET', 'coupon');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

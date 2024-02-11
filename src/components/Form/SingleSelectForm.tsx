@@ -43,6 +43,7 @@ const SingleSelectForm = ({
         router.push(`/survey/coupon?token=${token}`);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
   return (
     <VerticalApart height='500px'>
