@@ -4,8 +4,8 @@ export const dynamic = 'force-dynamic';
 import { NextResponse, NextRequest } from 'next/server';
 import { decryptText, encryptText, getTokenValue } from '~/utils/helper';
 import Transaction from '~/models/transaction';
-// import { userEmailVerificationMail } from '~/utils/emailHandler/emailHandler';
-//do't remove comment
+import { userEmailVerificationMail } from '~/utils/emailHandler/emailHandler';
+
 export async function POST(req: NextRequest) {
   try {
     await dbConnect();
@@ -20,8 +20,8 @@ export async function POST(req: NextRequest) {
     }
 
     const linkToken = encryptText(String(userData._id));
-    // await userEmailVerificationMail(response.email, linkToken);
-    return NextResponse.json({ data: userData, linkToken }, { status: 200 });
+    await userEmailVerificationMail(userData.email, linkToken);
+    return NextResponse.json({ data: userData }, { status: 200 });
   } catch (e) {
     return NextResponse.json(e, { status: 500 });
   }
@@ -60,6 +60,10 @@ export async function PATCH(req: NextRequest) {
       }
     );
     return NextResponse.json({ message: 'Data updated', status: 200 });
+    const response = await User.create(data);
+    const linkToken = encryptText(String(response._id));
+    await userEmailVerificationMail(response.email, linkToken);
+    return NextResponse.json({ data: response }, { status: 200 });
   } catch (e) {
     return NextResponse.json(e, { status: 500 });
   }

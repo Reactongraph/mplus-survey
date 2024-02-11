@@ -31,13 +31,11 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.includes('coupon') &&
     !request.nextUrl.pathname.includes(existingCoupon)
   ) {
-    if (actualStep === 6) {
-      return NextResponse.redirect(
-        new URL(`/survey/coupon/${existingCoupon}?token=${decodedToken}`, request.url)
-      );
-    }
+    return NextResponse.redirect(
+      new URL(`/survey/coupon/${existingCoupon}?token=${decodedToken}`, request.url)
+    );
   }
-  if (request.nextUrl.pathname.includes('coupon')) {
+  if (request.nextUrl.pathname.includes('coupon') && actualStep === 6) {
     return response;
   }
   if (actualStep === 6) {

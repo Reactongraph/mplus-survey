@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Modal from '@/components/Model';
 import useTnc from '@/hooks/useTnc';
 import Button from '@/components/Common/Button';
+import FullScreenLoader from '@/components/Loaders/FullScreenLoader';
 
 const Page = ({ login, isLoading }: any) => {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -40,6 +41,7 @@ const Page = ({ login, isLoading }: any) => {
 
   return (
     <>
+      {isLoading && <FullScreenLoader />}
       <WelcomeCard subTitle='Earn a gift card of your choice by filling out a short survey.'>
         <div
           style={{
