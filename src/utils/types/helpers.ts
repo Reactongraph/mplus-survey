@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 export const copyToClipboard = async (text: string) => {
   if (!text) {
     return false;
@@ -18,40 +21,20 @@ export const truncateString = (sentence: string, length: number = 3) => {
   return words.slice(0, length).join(' ');
 };
 
-export const oauthSignIn = async () => {
-  const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+export const gogleLoginSuccess = async (data: any) => {
+  const { access_token } = data;
 
-  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-  const form = document.createElement('form');
-  form.setAttribute('method', 'GET'); // Send as a GET request.
-  form.setAttribute('action', oauth2Endpoint);
-
-  // Parameters to pass to OAuth 2.0 endpoint.
-  const params = {
-    client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    redirect_uri: process.env.NEXT_PUBLIC_APP_URL,
-    response_type: 'code',
-    scope: 'email profile openid',
-    include_granted_scopes: 'true',
-    state: '42a7bd822fe32cc56',
-    prompt: 'select_account'
-  };
-
-  // Add form parameters as hidden input values.
-  if (params) {
-    const keys = Object.keys(params);
-    keys.forEach((key) => {
-      const input = document.createElement('input');
-      input.setAttribute('type', 'hidden');
-      input.setAttribute('name', key);
-      // @ts-ignore
-      input.setAttribute('value', params[key]);
-      form.appendChild(input);
+  try {
+    const response = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+      headers: { Authorization: `Bearer ${access_token}` }
     });
+    return response.data.email;
+  } catch (error) {
+    gogleLoginFail();
+    return null;
   }
+};
 
-  // Add form to page and submit it to open the OAuth 2.0 endpoint.
-  document.body.appendChild(form);
-  const result = await form.submit();
-  return result;
+export const gogleLoginFail = async () => {
+  toast.error('Google login failed!');
 };

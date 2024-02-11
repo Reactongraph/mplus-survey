@@ -1,6 +1,7 @@
 'use client';
 
 import React, { ReactNode } from 'react';
+import SpinnerLoader from '../Loaders/SpinnerLoader';
 
 type ButtonPropsType = {
   disabled?: boolean;
@@ -10,6 +11,7 @@ type ButtonPropsType = {
   varient?: string;
   textTransform?: 'capitalize' | 'uppercase' | 'lowercase' | 'none';
   As?: React.ElementType;
+  loading?: boolean;
   otherProps?: any;
 };
 
@@ -42,6 +44,7 @@ const Button = ({
   varient = 'v1',
   textTransform = 'uppercase',
   As: Component = 'button',
+  loading = false,
   otherProps = {}
 }: ButtonPropsType) => {
   return (
@@ -61,7 +64,7 @@ const Button = ({
       onClick={handler}
       {...otherProps}
     >
-      {children}
+      {loading ? <SpinnerLoader /> : children}
     </Component>
   );
 };

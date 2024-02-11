@@ -1,5 +1,5 @@
-import { FormDataType } from '@/utils/types/types';
-import React, { useState } from 'react';
+import { FormDataType, formQuestionOptionsType } from '@/utils/types/types';
+import React, { useEffect, useState } from 'react';
 import MultiSelectOption from '../Common/MultiSelectOption';
 import SelectionChip from '../Common/SelectionChip';
 import FormQuestion from '../Common/FormQuestion';
@@ -8,29 +8,54 @@ import FormSubmit from '../Common/FormSubmit';
 import OptionList from '../Common/OptionList';
 import VerticalApart from '../Common/VerticalApart';
 import { useRouter } from 'next/navigation';
+import useRequest from '@/hooks/useRequest';
 
-const MultiSelectForm = ({ formStepData, step }: { formStepData: FormDataType; step: number }) => {
+const MultiSelectForm = ({
+  formStepData,
+  step,
+  token
+}: {
+  formStepData: FormDataType;
+  step: number;
+  token: string;
+}) => {
   const router = useRouter();
   const { options, question } = formStepData;
-  const [selections, setSelections] = useState<string[]>([]);
+  const [selections, setSelections] = useState<formQuestionOptionsType[]>([]);
+  const { request, response, isLoading } = useRequest();
 
-  const handleSelect = (id: string) => {
+  const handleSelect = (option: formQuestionOptionsType) => {
     setSelections((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((item) => item !== id);
+      const alreadyHas = prev.find((e: any) => e.id === option.id);
+      if (alreadyHas) {
+        return prev.filter((item: any) => item.id !== option.id);
       } else {
-        return [...prev, id];
+        return [...prev, option];
       }
     });
   };
 
   const handleSubmit = () => {
-    if (step < 6) {
-      router.push(`/survey/${+step + 1}`);
-    } else {
-      router.push(`/survey/coupon`);
-    }
+    let answer = '';
+    selections.forEach((elem) => {
+      answer += `${elem.id} - ${elem.text}, `;
+    });
+    answer.slice(0, answer.length - 2);
+    request('PATCH', `user`, {
+      profilingQuestions: { question, answer },
+      surveyStep: step
+    });
   };
+
+  useEffect(() => {
+    if (response) {
+      if (step < 6) {
+        router.push(`/survey/${+step + 1}?token=${token}`);
+      } else {
+        router.push(`/survey/coupon?token=${token}`);
+      }
+    }
+  }, [response]);
   return (
     <VerticalApart height='500px'>
       <div>
@@ -41,8 +66,8 @@ const MultiSelectForm = ({ formStepData, step }: { formStepData: FormDataType; s
               <MultiSelectOption
                 key={option.id}
                 serialNumber={index + 1}
-                isActive={selections.includes(option.id)}
-                handler={() => handleSelect(option.id)}
+                isActive={!!selections.find((e: any) => e.id === option.id)}
+                handler={() => handleSelect(option)}
               >
                 {option.text}
               </MultiSelectOption>
@@ -52,14 +77,21 @@ const MultiSelectForm = ({ formStepData, step }: { formStepData: FormDataType; s
         <ChipList>
           {options.map((option, index) => {
             return (
-              <SelectionChip key={option.id} isActive={!selections.includes(option.id)}>
+              <SelectionChip
+                key={option.id}
+                isActive={!selections.find((e: any) => e.id === option.id)}
+              >
                 {option.text}
               </SelectionChip>
             );
           })}
         </ChipList>
       </div>
-      <FormSubmit disabled={selections.length <= 0} handler={() => handleSubmit()} />
+      <FormSubmit
+        loading={isLoading}
+        disabled={selections.length <= 0}
+        handler={() => handleSubmit()}
+      />
     </VerticalApart>
   );
 };

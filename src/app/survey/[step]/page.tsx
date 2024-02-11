@@ -9,10 +9,12 @@ type StepPropType = {
   params: {
     step: number;
   };
+  searchParams: { token: string };
 };
 
-const Step = ({ params }: StepPropType) => {
+const Step = ({ params, searchParams }: StepPropType) => {
   const { step } = params;
+  const { token } = searchParams;
 
   const formStepData = useFormStepData(step);
 
@@ -23,8 +25,12 @@ const Step = ({ params }: StepPropType) => {
   const { type } = formStepData;
   return (
     <>
-      {type === 'singleSelect' && <SingleSelectForm formStepData={formStepData} step={step} />}
-      {type === 'multiSelect' && <MultiSelectForm formStepData={formStepData} step={step} />}
+      {type === 'singleSelect' && (
+        <SingleSelectForm formStepData={formStepData} step={step} token={token} />
+      )}
+      {type === 'multiSelect' && (
+        <MultiSelectForm formStepData={formStepData} step={step} token={token} />
+      )}
     </>
   );
 };

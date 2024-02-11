@@ -1,4 +1,4 @@
-import { CouponListType, CouponProvidersListType, FormDataListType } from './types';
+import { FormDataListType } from './types';
 
 const formDataList: FormDataListType = [
   {
@@ -7,19 +7,19 @@ const formDataList: FormDataListType = [
     question: 'What is most important to you when shopping for home furnishings?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: 'Design/Aesthetic'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: 'Quality'
       },
       {
-        id: 'op3',
+        id: 'C',
         text: 'Affordability'
       },
       {
-        id: 'op4',
+        id: 'D',
         text: 'Eco-Friendly'
       }
     ]
@@ -30,11 +30,11 @@ const formDataList: FormDataListType = [
     question: 'Will you be redecorating or furnishing a space this year?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: 'Yes'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: 'No'
       }
     ]
@@ -45,19 +45,19 @@ const formDataList: FormDataListType = [
     question: 'How long do you normally take to review and purchase big furniture items?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: '2 weeks or less'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: '2-4 weeks'
       },
       {
-        id: 'op3',
+        id: 'C',
         text: '4-6 weeks'
       },
       {
-        id: 'op4',
+        id: 'D',
         text: '6 weeks or longer'
       }
     ]
@@ -68,19 +68,19 @@ const formDataList: FormDataListType = [
     question: 'What is your top priority for your space in 2024?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: 'A simple refresh of my space with (smaller) décor items'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: 'Complete redesign of my space with (larger) feature items'
       },
       {
-        id: 'op3',
+        id: 'C',
         text: 'Optimize what I have with smart accessories'
       },
       {
-        id: 'op4',
+        id: 'D',
         text: 'Declutter and organize my space with storage'
       }
     ]
@@ -91,19 +91,19 @@ const formDataList: FormDataListType = [
     question: 'What room are you most likely to redecorate or upgrade this year?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: 'Kitchen'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: 'Bedroom'
       },
       {
-        id: 'op3',
+        id: 'C',
         text: 'Living Room'
       },
       {
-        id: 'op4',
+        id: 'D',
         text: 'Home Office/Ent Room'
       }
     ]
@@ -114,11 +114,11 @@ const formDataList: FormDataListType = [
     question: 'Are you more likely to shop in store or online?',
     options: [
       {
-        id: 'op1',
+        id: 'A',
         text: 'In Store'
       },
       {
-        id: 'op2',
+        id: 'B',
         text: 'Online'
       }
     ]
@@ -133,31 +133,3 @@ export const formElementByStep: any = {
   5: formDataList[4],
   6: formDataList[5]
 };
-
-export const couponProviders: CouponProvidersListType = [
-  {
-    id: 'cp1',
-    provider: 'tim horton',
-    image: '/images/timhortons.png'
-  },
-  {
-    id: 'cp2',
-    provider: 'starbucks',
-    image: '/images/starbucks.png'
-  }
-];
-
-export const coupons: CouponListType = [
-  {
-    id: 'c1',
-    code: 'CODE123',
-    provider: 'cp1',
-    availableCount: 100
-  },
-  {
-    id: 'c2',
-    code: 'CODE456',
-    provider: 'cp2',
-    availableCount: 100
-  }
-];

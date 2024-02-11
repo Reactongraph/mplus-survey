@@ -2,28 +2,28 @@
 
 import Button from '@/components/Common/Button';
 import GradientCard from '@/components/Common/GradientCard';
+import useRequest from '@/hooks/useRequest';
 import { copyToClipboard } from '@/utils/types/helpers';
-import { couponProviders, coupons } from '@/utils/types/staticData';
-import { CouponProvidersType, CouponType } from '@/utils/types/types';
+import { CouponData } from '@/utils/types/types';
 import React, { useEffect, useState } from 'react';
 
-type ApiResponseType = CouponType & {
-  providerData: CouponProvidersType;
-};
-
-const Result = ({ params }: { params: { id: string } }) => {
+const Coupon = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const [couponData, setCouponData] = useState<ApiResponseType | null>(null);
   const [isCopied, setIsCopied] = useState(false);
+  const { request, response } = useRequest();
+  const [couponData, setCouponData] = useState<CouponData | null>(null);
 
   useEffect(() => {
-    const coupon = coupons.find((e) => e.provider === id);
-    const providerData = couponProviders.find((e) => e.id === id);
-    if (coupon && providerData) {
-      setCouponData({ ...coupon, providerData });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    request('POST', `transaction`, {
+      couponId: id
+    });
   }, []);
+
+  useEffect(() => {
+    if (response) {
+      setCouponData(response?.data);
+    }
+  }, [response]);
 
   const handleCopy = async (code: string) => {
     const isDone = await copyToClipboard(code);
@@ -34,7 +34,7 @@ const Result = ({ params }: { params: { id: string } }) => {
   };
   return (
     <GradientCard
-      image={couponData?.providerData?.image}
+      image={couponData?.image}
       title='Winner!'
       subTitle='You’ve won! Use the prize code below at online checkout to redeem your prize.'
       enableImageBackground={true}
@@ -81,4 +81,4 @@ const Result = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Result;
+export default Coupon;

@@ -5,7 +5,8 @@ const transactionSchema: any = new Schema(
   {
     userId: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      unique: true
     },
     couponId: {
       type: mongoose.SchemaTypes.ObjectId,

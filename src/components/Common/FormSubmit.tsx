@@ -5,9 +5,15 @@ type FormSubmitPropType = {
   handler: () => void;
   text?: string;
   disabled?: boolean;
+  loading?: boolean;
 };
 
-const FormSubmit = ({ handler, text = 'Submit', disabled = false }: FormSubmitPropType) => {
+const FormSubmit = ({
+  handler,
+  text = 'Submit',
+  disabled = false,
+  loading = false
+}: FormSubmitPropType) => {
   return (
     <div
       style={{
@@ -52,7 +58,7 @@ const FormSubmit = ({ handler, text = 'Submit', disabled = false }: FormSubmitPr
         ></div>
       </div>
       <div>
-        <Button disabled={disabled} handler={handler}>
+        <Button loading={loading} disabled={disabled || loading} handler={handler}>
           {text}
         </Button>
       </div>

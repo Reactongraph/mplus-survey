@@ -2,11 +2,25 @@
 
 import Button from '@/components/Common/Button';
 import GradientCard from '@/components/Common/GradientCard';
-import { couponProviders } from '@/utils/types/staticData';
+import useRequest from '@/hooks/useRequest';
+import { CouponListType } from '@/utils/types/types';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Result = () => {
+const Result = ({ searchParams }: { searchParams: { token: string } }) => {
+  const { token } = searchParams;
+  const { request, response } = useRequest();
+  const [couponList, setCouponList] = useState<CouponListType>([]);
+
+  useEffect(() => {
+    request('GET', 'coupon');
+  }, []);
+
+  useEffect(() => {
+    if (response) {
+      setCouponList(response?.data);
+    }
+  }, [response]);
   return (
     <GradientCard
       image='/images/giftbox.png'
@@ -20,20 +34,20 @@ const Result = () => {
           gap: '20px'
         }}
       >
-        {couponProviders.map((provider) => {
+        {couponList.map((coupon) => {
           return (
             <Button
-              key={provider.id}
+              key={coupon._id}
               rounded={true}
               varient='v3'
               handler={() => {}}
               textTransform='capitalize'
               As={Link}
               otherProps={{
-                href: `/survey/coupon/${provider.id}`
+                href: `/survey/coupon/${coupon._id}?token=${token}`
               }}
             >
-              {provider.provider}
+              {coupon.provider}
             </Button>
           );
         })}

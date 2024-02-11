@@ -24,19 +24,12 @@ export type FormDataType = {
 
 export type FormDataListType = FormDataType[];
 
-export type CouponProvidersType = {
-  id: string;
-  provider: string;
-  image: string;
-};
-
-export type CouponProvidersListType = CouponProvidersType[];
-
-export type CouponType = {
-  id: string;
-  code: string;
-  provider: string;
+export type CouponData = {
   availableCount: number;
+  code: string;
+  image: string;
+  provider: string;
+  _id: string;
 };
 
-export type CouponListType = CouponType[];
+export type CouponListType = CouponData[];

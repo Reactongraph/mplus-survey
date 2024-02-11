@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   const id = pathname.split('/').pop();
   try {
     await dbConnect();
-    const response = await Coupon.find({ _id: id });
+    const response = await Coupon.findOne({ _id: id });
     return NextResponse.json({ data: response }, { status: 200 });
   } catch (e) {
     return NextResponse.json(e, { status: 500 });
@@ -22,9 +22,7 @@ export async function PATCH(req: NextRequest) {
   const url = new URL(req.url);
   const pathname = url.pathname;
   const id = pathname.split('/').pop();
-  if (!id) {
-    if (!id) return NextResponse.json({ message: 'error:Coupon id missing', status: 500 });
-  }
+  if (!id) return NextResponse.json({ message: 'error:Coupon id missing', status: 500 });
   try {
     await dbConnect();
     const data = await req.json();

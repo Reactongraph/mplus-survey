@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
-const Join = ({ login }: any) => {
+const Join = ({ login, isLoading }: any) => {
   const [email, setEmail] = useState('');
   const router = useRouter();
   const { TncComponent, isAccepted } = useTnc();
@@ -72,9 +72,10 @@ const Join = ({ login }: any) => {
           {TncComponent}
         </div>
         <Button
-          disabled={!isAccepted || !email}
+          disabled={!isAccepted || !email || isLoading}
           textTransform='capitalize'
           handler={() => handleSubmit()}
+          loading={isLoading}
         >
           Continue
         </Button>

@@ -1,28 +1,49 @@
-import { FormDataType } from '@/utils/types/types';
-import React, { useState } from 'react';
+import { FormDataType, formQuestionOptionsType } from '@/utils/types/types';
+import React, { useEffect, useState } from 'react';
 import SingleSelectOption from '../Common/SingleSelectOption';
 import FormQuestion from '../Common/FormQuestion';
 import FormSubmit from '../Common/FormSubmit';
 import OptionList from '../Common/OptionList';
 import VerticalApart from '../Common/VerticalApart';
 import { useRouter } from 'next/navigation';
+import useRequest from '@/hooks/useRequest';
 
-const SingleSelectForm = ({ formStepData, step }: { formStepData: FormDataType; step: number }) => {
+const SingleSelectForm = ({
+  formStepData,
+  step,
+  token
+}: {
+  formStepData: FormDataType;
+  step: number;
+  token: string;
+}) => {
   const router = useRouter();
   const { options, question } = formStepData;
-  const [selection, setSelection] = useState<string | null>(null);
+  const [selection, setSelection] = useState<formQuestionOptionsType | null>(null);
+  const { request, response, isLoading } = useRequest();
 
-  const handleSelect = (id: string) => {
-    setSelection(id);
+  const handleSelect = (option: formQuestionOptionsType) => {
+    setSelection(option);
   };
 
   const handleSubmit = () => {
-    if (step < 6) {
-      router.push(`/survey/${+step + 1}`);
-    } else {
-      router.push(`/survey/coupon`);
-    }
+    let answer = `${selection?.id} - ${selection?.text}`;
+
+    request('PATCH', `user`, {
+      profilingQuestions: { question, answer },
+      surveyStep: step
+    });
   };
+
+  useEffect(() => {
+    if (response) {
+      if (step < 6) {
+        router.push(`/survey/${+step + 1}?token=${token}`);
+      } else {
+        router.push(`/survey/coupon?token=${token}`);
+      }
+    }
+  }, [response]);
   return (
     <VerticalApart height='500px'>
       <div>
@@ -33,8 +54,8 @@ const SingleSelectForm = ({ formStepData, step }: { formStepData: FormDataType; 
               <SingleSelectOption
                 key={option.id}
                 serialNumber={index + 1}
-                isActive={selection === option.id}
-                handler={() => handleSelect(option.id)}
+                isActive={selection?.id === option.id}
+                handler={() => handleSelect(option)}
               >
                 {option.text}
               </SingleSelectOption>
@@ -43,7 +64,7 @@ const SingleSelectForm = ({ formStepData, step }: { formStepData: FormDataType; 
         </OptionList>
       </div>
 
-      <FormSubmit disabled={!selection} handler={() => handleSubmit()} />
+      <FormSubmit loading={isLoading} disabled={!selection} handler={() => handleSubmit()} />
     </VerticalApart>
   );
 };

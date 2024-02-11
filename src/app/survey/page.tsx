@@ -2,11 +2,11 @@
 
 import Button from '@/components/Common/Button';
 import GradientCard from '@/components/Common/GradientCard';
-import { couponProviders } from '@/utils/types/staticData';
 import Link from 'next/link';
 import React from 'react';
 
-const Result = () => {
+const Result = ({ searchParams }: { searchParams: { token: string } }) => {
+  const { token } = searchParams;
   return (
     <GradientCard
       image='/images/openbox.png'
@@ -24,7 +24,7 @@ const Result = () => {
           handler={() => {}}
           As={Link}
           otherProps={{
-            href: `/survey/1`
+            href: `/survey/1?token=${token}`
           }}
         >
           Start <span style={{ fontSize: '30px' }}>→</span>

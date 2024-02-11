@@ -1,13 +1,25 @@
 'use client';
 
+import useRequest from '@/hooks/useRequest';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 const loginProvider = (Component: React.FC) => {
   const EnhancedComponent = (props: any) => {
+    const router = useRouter();
+    const { request, response, isLoading } = useRequest();
+
     const login = (email: string) => {
-      // call login api here
-      //   console.log(email);
+      request('POST', 'user', { email });
     };
 
-    return <Component login={login} {...props} />;
+    useEffect(() => {
+      if (response) {
+        router.push('/join/success');
+      }
+    }, [response]);
+
+    return <Component login={login} isLoading={isLoading} {...props} />;
   };
 
   return EnhancedComponent;
