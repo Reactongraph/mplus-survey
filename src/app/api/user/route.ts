@@ -37,6 +37,8 @@ export async function GET(req: NextRequest) {
     const hasTransaction = await Coupon.findOne({ userId });
     return NextResponse.json({ data: response, hasTransaction: hasTransaction }, { status: 200 });
   } catch (e) {
+    /* eslint-disable no-console */
+    console.log('error check', e);
     return NextResponse.json(e, { status: 500 });
   }
 }
