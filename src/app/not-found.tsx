@@ -8,7 +8,7 @@ const NotFoundPage = () => {
         </h2>
         <p className='mt-2 text-center text-gray-600'>
           Please check the URL or{' '}
-          <Link href='/' className='text-blue-500'>
+          <Link href='/' className='text-blue5'>
             return to the homepage
           </Link>
           .

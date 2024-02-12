@@ -43,14 +43,7 @@ const Page = ({ login, isLoading }: any) => {
     <>
       {isLoading && <FullScreenLoader />}
       <WelcomeCard subTitle='Earn a gift card of your choice by filling out a short survey.'>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '10px'
-          }}
-        >
+        <div className='flex flex-col items-center gap-4'>
           <LiginLink
             image='/images/email.png'
             text='Continue with Email'
@@ -65,24 +58,11 @@ const Page = ({ login, isLoading }: any) => {
       </WelcomeCard>
       <Modal isOpen={isConfirmOpen} onClose={() => setIsConfirmOpen(false)}>
         <div>
-          <div
-            style={{
-              textAlign: 'center',
-              fontWeight: 600,
-              marginBottom: '30px',
-              fontSize: '15px'
-            }}
-          >
+          <div className='text-center font-semibold mb-8 text-lg'>
             Privacy Policy & Terms of Use
           </div>
           {TncComponent}
-          <div
-            style={{
-              display: 'flex',
-              gap: '10px',
-              marginTop: '20px'
-            }}
-          >
+          <div className='flex gap-10 mt-10'>
             <Button
               varient='v2'
               handler={() => {
@@ -121,27 +101,12 @@ const LiginLink = ({
 }) => {
   return (
     <div
-      style={{
-        padding: '12px 30px',
-        borderRadius: '8px',
-        color: '#001044',
-        fontSize: '14px',
-        backgroundColor: 'white',
-        width: '300px',
-        position: 'relative',
-        textAlign: 'center',
-        cursor: 'pointer'
-      }}
+      className='p-3 rounded bg-white text-#001044 text-sm cursor-pointer relative'
+      style={{ width: '300px', textAlign: 'center' }}
       onClick={handler}
     >
       <Image
-        style={{
-          marginRight: '30px',
-          position: 'absolute',
-          top: '50%',
-          left: '10%',
-          transform: 'translate(-50%, -50%)'
-        }}
+        className='mr-8 absolute top-1/2 left-7 transform -translate-y-1/2'
         src={image}
         alt='email'
         height={30}

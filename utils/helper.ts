@@ -2,6 +2,9 @@ import dbConnect from '~/db/db';
 import Coupon from '~/models/coupon';
 const couponThreshold = process.env.NEXT_PUBLIC_COUPON_THRESHOLD || '';
 import CryptoJS from 'crypto-js';
+import fs from 'fs';
+import path from 'path';
+
 const key = process.env.NEXT_PUBLIC_SECRET_KEY || '';
 
 export const sentAlert = async (id: string) => {
@@ -37,4 +40,13 @@ export const getTokenValue = (input: string) => {
     return token;
   }
   return null;
+};
+
+export const getVerifyEmailTemplate = (link: string) => {
+  let text = fs.readFileSync(path.resolve('/emailTemplates/veify.html'), {
+    encoding: 'utf-8',
+    flag: 'r'
+  });
+  text = text.replace('{{LINK}}', link);
+  return text;
 };

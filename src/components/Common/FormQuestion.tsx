@@ -1,19 +1,7 @@
 import React from 'react';
 
 const FormQuestion = ({ text }: { text: string }) => {
-  return (
-    <div
-      style={{
-        textAlign: 'center',
-        fontWeight: 700,
-        marginTop: '10px',
-        marginBottom: '10px',
-        fontSize: '14px'
-      }}
-    >
-      {text}
-    </div>
-  );
+  return <div className='text-center font-bold my-2 text-sm'>{text}</div>;
 };
 
 export default FormQuestion;

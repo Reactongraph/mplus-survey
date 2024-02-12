@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
 
   response.cookies.set('userId', data.data._id);
   const actualStep = data.data.surveyStep;
-  const existingCoupon = data?.hasTransaction?.couponId || null;
+  const existingCoupon = data?.hasTransaction?._id || null;
   const allowedSteps = [actualStep, actualStep + 1];
 
   let step: number | string = request.nextUrl.pathname.split('survey/')[1];

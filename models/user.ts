@@ -41,6 +41,13 @@ const userSchema: any = new Schema(
     surveyStep: {
       type: Number,
       default: 0
+    },
+    couponId: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Coupon'
+    },
+    surveyCompleteDate: {
+      type: Date
     }
   },
   { timestamps: true }

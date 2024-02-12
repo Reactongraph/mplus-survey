@@ -2,6 +2,7 @@ import { couponAlertTemplate, emailVerificationTemplate } from './emailTemplates
 import * as nodemailer from 'nodemailer';
 import headerLogo from '~/public/images/precision-light.png';
 import shieldLogo from '~/public/images/Shield check.png';
+import { getVerifyEmailTemplate } from '../helper';
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || '';
 // import sgMail from '@sendgrid/mail';
 // sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY || '');
@@ -43,6 +44,7 @@ export const userEmailVerificationMail = async (email: string, token: string) =>
   try {
     const link = `${process.env.NEXT_PUBLIC_APP_URL}/survey?token=${token}`;
     await sentMail(email, 'Verify Your Email', emailVerificationTemplate(link));
+    // await sentMail(email, 'Verify Your Email', getVerifyEmailTemplate(link));
   } catch (error: any) {
     throw new Error(error);
   }

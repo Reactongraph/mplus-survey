@@ -13,18 +13,10 @@ export default function WelcomeCard({
     <div className='p-5 pt-20 flex min-h-screen flex-col items-center bg-landingPrimary bg-cover bg-center bg-no-repeat landingPrimary'>
       <VerticalApart height='550px'>
         <div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
+          <div className='flex justify-center items-center'>
             <Image src='/images/giftbox.png' alt='giftbox' height={180} width={180} />
           </div>
-          <p style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginTop: '25px' }}>
-            {subTitle}
-          </p>
+          <p className='text-center text-white text-base mt-6'>{subTitle}</p>
         </div>
         <div>{children}</div>
       </VerticalApart>

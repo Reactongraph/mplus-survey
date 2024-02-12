@@ -15,50 +15,14 @@ const FormSubmit = ({
   loading = false
 }: FormSubmitPropType) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: '10px',
-        marginBottom: '20px'
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          marginLeft: '20px'
-        }}
-      >
-        <div
-          style={{
-            height: '8px',
-            width: '8px',
-            backgroundColor: '#297AFC4D',
-            borderRadius: '50%'
-          }}
-        ></div>
-        <div
-          style={{
-            height: '8px',
-            width: '24px',
-            backgroundColor: '#297AFC',
-            borderRadius: '4px'
-          }}
-        ></div>
-        <div
-          style={{
-            height: '8px',
-            width: '8px',
-            backgroundColor: '#297AFC4D',
-            borderRadius: '50%'
-          }}
-        ></div>
+    <div className='flex justify-between items-center gap-10 mb-20'>
+      <div className='flex items-center gap-3 ml-5'>
+        <div className='h-3 w-3 bg-blue3 rounded-full'></div>
+        <div className='h-3 w-8 bg-blue5 rounded-md'></div>
+        <div className='h-3 w-3 bg-blue3 rounded-full'></div>
       </div>
       <div>
-        <Button loading={loading} disabled={disabled || loading} handler={handler}>
+        <Button loading={loading} disabled={disabled || loading} handler={handler} varient='v1'>
           {text}
         </Button>
       </div>

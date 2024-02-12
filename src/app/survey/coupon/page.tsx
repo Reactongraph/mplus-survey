@@ -10,16 +10,16 @@ import React, { useEffect, useState } from 'react';
 const Result = ({ searchParams }: { searchParams: { token: string } }) => {
   const { token } = searchParams;
   const { request, response } = useRequest();
-  const [couponList, setCouponList] = useState<CouponListType>([]);
+  const [providerList, setProviderList] = useState<CouponListType>([]);
 
   useEffect(() => {
-    request('GET', 'coupon');
+    request('GET', 'coupon/providers');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (response) {
-      setCouponList(response?.data);
+      setProviderList(response?.data);
     }
   }, [response]);
   return (
@@ -28,14 +28,8 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
       title='Congrats!'
       subTitle='Pick a prize from the options below...'
     >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '20px'
-        }}
-      >
-        {couponList.map((coupon) => {
+      <div className='flex justify-center gap-10'>
+        {providerList.map((coupon) => {
           return (
             <Button
               key={coupon._id}

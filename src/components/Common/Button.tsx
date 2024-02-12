@@ -1,5 +1,3 @@
-'use client';
-
 import React, { ReactNode } from 'react';
 import SpinnerLoader from '../Loaders/SpinnerLoader';
 
@@ -8,7 +6,7 @@ type ButtonPropsType = {
   children: ReactNode | string;
   handler?: () => void;
   rounded?: boolean;
-  varient?: string;
+  varient?: 'v1' | 'v2' | 'v3' | 'v4';
   textTransform?: 'capitalize' | 'uppercase' | 'lowercase' | 'none';
   As?: React.ElementType;
   loading?: boolean;
@@ -17,22 +15,22 @@ type ButtonPropsType = {
 
 const varientColorMap: any = {
   v1: {
-    bgColor: '#297AFC',
-    color: 'white',
-    disabledBgColor: '#297AFC4D',
-    disabledColor: 'white'
+    bgColor: 'bg-blue5',
+    color: 'text-white',
+    disabledBgColor: 'bg-blue5 opacity-50',
+    disabledColor: 'text-white'
   },
   v2: {
-    bgColor: '#EAEAEB',
-    color: '#404040'
+    bgColor: 'bg-gray-300',
+    color: 'text-gray-700'
   },
   v3: {
-    bgColor: 'white',
-    color: '#297AFC'
+    bgColor: 'bg-white',
+    color: 'text-blue5'
   },
   v4: {
-    bgColor: 'white',
-    color: '#297AFC'
+    bgColor: 'bg-white',
+    color: 'text-blue5'
   }
 };
 
@@ -47,19 +45,14 @@ const Button = ({
   loading = false,
   otherProps = {}
 }: ButtonPropsType) => {
+  const bgColor = disabled
+    ? varientColorMap[varient].disabledBgColor
+    : varientColorMap[varient].bgColor;
+  const color = disabled ? varientColorMap[varient].disabledColor : varientColorMap[varient].color;
+
   return (
     <Component
-      style={{
-        padding: '12px 30px',
-        borderRadius: rounded ? '22px' : '8px',
-        color: varientColorMap[varient].color,
-        textTransform: textTransform,
-        fontWeight: 700,
-        fontSize: '14px',
-        ...(disabled
-          ? { backgroundColor: varientColorMap[varient].disabledBgColor }
-          : { backgroundColor: varientColorMap[varient].bgColor })
-      }}
+      className={`py-3 px-5 ${rounded ? 'rounded-full' : 'rounded-md'} ${color} ${textTransform === 'none' ? '' : textTransform} font-semibold ${bgColor}`}
       disabled={disabled}
       onClick={handler}
       {...otherProps}

@@ -3,8 +3,8 @@ import User from '~/models/user';
 export const dynamic = 'force-dynamic';
 import { NextResponse, NextRequest } from 'next/server';
 import { decryptText, encryptText, getTokenValue } from '~/utils/helper';
-import Transaction from '~/models/transaction';
 import { userEmailVerificationMail } from '~/utils/emailHandler/emailHandler';
+import Coupon from '~/models/coupon';
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     let response = await User.findOne({ _id: userId }).select({ profilingQuestions: 0 });
-    const hasTransaction = await Transaction.findOne({ userId });
+    const hasTransaction = await Coupon.findOne({ userId });
     return NextResponse.json({ data: response, hasTransaction: hasTransaction }, { status: 200 });
   } catch (e) {
     return NextResponse.json(e, { status: 500 });
@@ -60,10 +60,6 @@ export async function PATCH(req: NextRequest) {
       }
     );
     return NextResponse.json({ message: 'Data updated', status: 200 });
-    const response = await User.create(data);
-    const linkToken = encryptText(String(response._id));
-    await userEmailVerificationMail(response.email, linkToken);
-    return NextResponse.json({ data: response }, { status: 200 });
   } catch (e) {
     return NextResponse.json(e, { status: 500 });
   }

@@ -17,32 +17,12 @@ const Join = ({ login, isLoading }: any) => {
     login(email);
   };
   return (
-    <div
-      style={{
-        background: '#E8F1FC',
-        minHeight: '100vh',
-        padding: '20px'
-      }}
-    >
+    <div className='bg-blue2 min-h-screen p-8'>
       <VerticalApart height='90vh'>
         <div>
-          <div
-            style={{
-              position: 'relative',
-              textAlign: 'center',
-              fontWeight: 600,
-              marginBottom: '50px'
-            }}
-          >
+          <div className='relative text-center font-semibold mb-8'>
             <Image
-              style={{
-                marginRight: '30px',
-                position: 'absolute',
-                top: '50%',
-                left: '3%',
-                transform: 'translate(-50%, -50%)',
-                cursor: 'pointer'
-              }}
+              className='absolute top-1/2 left-3 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer'
               src='/images/arrow-left.png'
               alt='email'
               height={25}
@@ -51,18 +31,12 @@ const Join = ({ login, isLoading }: any) => {
             />
             Personal Information
           </div>
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ color: '#297AFC80', fontSize: '12px', fontWeight: 600 }}>
-              EMAIL ADDRESS <span style={{ color: 'red' }}>*</span>
+          <div className='mb-10'>
+            <label className='text-blue5 text-opacity-80 text-sm font-semibold'>
+              EMAIL ADDRESS <span className='text-red-500'>*</span>
             </label>
             <input
-              style={{
-                width: '100%',
-                padding: '12px',
-                border: '1px solid #C1DDFF',
-                borderRadius: '10px',
-                outline: 'none'
-              }}
+              className='w-full p-3 border border-blue4 rounded-lg outline-none'
               type='email'
               placeholder='Email Address'
               value={email}

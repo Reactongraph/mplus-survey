@@ -14,7 +14,7 @@ const Coupon = ({ params }: { params: { id: string } }) => {
   const [couponData, setCouponData] = useState<CouponData | null>(null);
 
   useEffect(() => {
-    request('POST', `transaction`, {
+    request('PATCH', `coupon`, {
       couponId: id
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,22 +40,10 @@ const Coupon = ({ params }: { params: { id: string } }) => {
       subTitle='You’ve won! Use the prize code below at online checkout to redeem your prize.'
       enableImageBackground={true}
     >
-      <div
-        style={{
-          position: 'relative'
-        }}
-      >
+      <div className='relative'>
         {couponData?.code && (
           <>
-            <div
-              style={{
-                border: '1px solid white',
-                padding: '10px 20px',
-                borderRadius: '26px',
-                color: 'white',
-                fontSize: '14px'
-              }}
-            >
+            <div className='border border-white px-5 py-2 rounded-full text-white text-base'>
               {couponData.code}
             </div>
             <div

@@ -2,20 +2,7 @@ import { BeatLoader } from 'react-spinners';
 
 const FullScreenLoader = () => {
   return (
-    <div
-      style={{
-        backgroundColor: '#000000bd',
-        height: '100%',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000
-      }}
-    >
+    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50'>
       <BeatLoader size={30} color='blue' />
     </div>
   );

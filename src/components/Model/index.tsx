@@ -15,25 +15,11 @@ const Modal = ({
     <>
       {isOpen && (
         <div
-          style={{
-            position: 'fixed',
-            left: 0,
-            top: 0,
-            overflow: 'auto',
-            backgroundColor: '#00000070',
-            width: '100%',
-            height: '100vh'
-          }}
+          className='fixed top-0 left-0 w-full h-full overflow-auto bg-black bg-opacity-70'
           onClick={onClose}
         >
           <div
-            style={{
-              margin: '12% auto',
-              padding: '24px',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '10px',
-              width: '300px'
-            }}
+            className='mx-auto my-12 p-6 bg-white rounded-lg w-80'
             onClick={(e) => e.stopPropagation()}
           >
             {/* <button onClick={onClose}>close</button> */}

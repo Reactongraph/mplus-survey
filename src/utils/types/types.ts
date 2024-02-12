@@ -25,11 +25,12 @@ export type FormDataType = {
 export type FormDataListType = FormDataType[];
 
 export type CouponData = {
-  availableCount: number;
+  userId: string;
   code: string;
   image: string;
   provider: string;
   _id: string;
+  redeemDate: Date;
 };
 
 export type CouponListType = CouponData[];

@@ -5,15 +5,9 @@ import React from 'react';
 const SelectionChip = ({ children, isActive }: SelectionChipPropType) => {
   return (
     <div
-      style={{
-        fontSize: '14px',
-        padding: '5px 25px',
-        border: '2px solid',
-        borderRadius: '30px',
-        ...(isActive
-          ? { background: '#297AFC', color: 'white', borderColor: '#297AFC' }
-          : { borderColor: '#297AFC4D', color: '#297AFC4D' })
-      }}
+      className={`text-sm px-5 py-1 border-2 rounded-full ${
+        isActive ? 'bg-blue5 text-white border-blue5' : 'border-blue4 text-blue4'
+      }`}
     >
       {truncateString(children)}
     </div>
