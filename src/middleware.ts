@@ -20,6 +20,12 @@ export async function middleware(request: NextRequest) {
   }
 
   response.cookies.set('userId', data.data._id);
+  // response.cookies.set('userId', data.data._id, {
+  //   domain: process.env.NEXT_PUBLIC_APP_URL,
+  //   expires: Date.now() + 60 * 60 * 1000,
+  //   secure: true,
+  //   path: '/'
+  // });
   const actualStep = data.data.surveyStep;
   const existingCoupon = data?.hasTransaction?._id || null;
   const allowedSteps = [actualStep, actualStep + 1];
