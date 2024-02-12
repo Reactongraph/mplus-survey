@@ -4,6 +4,7 @@ const couponThreshold = process.env.NEXT_PUBLIC_COUPON_THRESHOLD || '';
 import CryptoJS from 'crypto-js';
 import fs from 'fs';
 import path from 'path';
+import jwt from 'jsonwebtoken';
 
 const key = process.env.NEXT_PUBLIC_SECRET_KEY || '';
 
@@ -18,14 +19,14 @@ export const sentAlert = async (id: string) => {
   }
 };
 
-export const encryptText = (text: string) => {
-  return CryptoJS.AES.encrypt(text, key).toString();
-};
+// export const encryptText = (text: string) => {
+//   return CryptoJS.AES.encrypt(text, key).toString();
+// };
 
-export const decryptText = (encryptedText: string) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedText, key);
-  return bytes.toString(CryptoJS.enc.Utf8);
-};
+// export const decryptText = (encryptedText: string) => {
+//   const bytes = CryptoJS.AES.decrypt(encryptedText, key);
+//   return bytes.toString(CryptoJS.enc.Utf8);
+// };
 
 export const getTokenValue = (input: string) => {
   const tokenParam = 'token=';
@@ -49,4 +50,14 @@ export const getVerifyEmailTemplate = (link: string) => {
   });
   text = text.replace('{{LINK}}', link);
   return text;
+};
+
+export const encryptText = async (_id: string) => {
+  const token = jwt.sign({ _id }, process.env.NEXT_PUBLIC_JWT_KEY);
+  return token;
+};
+
+export const decryptText = async (token: string) => {
+  const data = await jwt.verify(token, process.env.NEXT_PUBLIC_JWT_KEY);
+  return data?._id;
 };

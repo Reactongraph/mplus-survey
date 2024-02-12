@@ -10,7 +10,8 @@ export async function middleware(request: NextRequest) {
   if (!token) {
     return NextResponse.redirect(new URL('/', request.url));
   }
-  const decodedToken = decodeURIComponent(token);
+  // const decodedToken = decodeURIComponent(token);
+  const decodedToken = token;
   let data = await (
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}user?token=${decodedToken}`)
   ).json();
