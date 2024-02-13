@@ -1,154 +1,70 @@
-export const emailVerificationTemplate = (verificationLink: string) => `
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      .main-container {
-        min-height: 100%;
-        min-width: 100%;
-      }
+export const emailVerificationTemplate = (verificationLink: string) => `<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Template</title>
+  <style>
+    @media screen and (max-width: 600px) {
       .primary-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #297afc;
-        color: white;
-        width: 80px;
-        height: 42px;
-        font-weight: 700;
-        font-size: x-large;
-        text-decoration: none;
-        border-radius: 5px;
-        padding: 18.15px, 31.11px, 18.15px, 31.11px;
-        border-radius: 129.62px;
+        font-size: 16px !important;
       }
-      .logo-img {
-        margin-left: 10px;
-      }
-      .header-bg {
-        background: linear-gradient(109.04deg, #001044 5.66%, #297afc 119.79%);
-        height: 62px;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-      }
-      .header-text {
-        font-weight: 700;
-        color: #001044;
-        size: 25.92px;
-      }
-      .header-text-container{
-        width: 325.77px;
-        height: 52px;
-        display: flex;
-        align-items: center;
-      }
-      .section-text {
-        font-weight: 400;
-        color: #001044;
-        size: 15.12px;
-      }
-      .section-container {
-        width: 325.77px;
-        height: 52px;
-        display: flex;
-        align-items: center;
-      }
-      .footer-text {
-        font-weight: 400;
-        color: #297AFC;
-        font-size: 10px;
-      }
-      .footer-container {
-        width: 325.77px;
-        height: 52px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .container{
-        background: #e8f1fc;
-        min-height: 440px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-      .btn-container {
-        height: 80.9px;
-        width: 142.77px;
-        gap: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .divider{
-        width: 300px;
-      }
-      .center-img{
-        display: flex;
-        justify-content: center;
-      }
-      @media only screen and (max-width: 600px) {
-    .primary-button {
-        width: 180px;
-        height: 42px;
-        font-weight: 700;
-        font-size: x-large;
-        text-decoration: none;
-        border-radius: 5px;
-        background-color: #297afc;
-        padding: 18.15px, 31.11px, 18.15px, 31.11px;
-        border-radius: 129.62px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main-container">
-      <div class="header-bg">
-        <img
-          src="/public/images/precision-light.png"
-          alt="precision-light.png"
-          width="120"
-          height="30"
-          class="logo-img"
-        />
-      </div>
-      <div class="container">
-        <div>
-          <div class="center-img">
-            <img
-              src="/public/images/Shield check.png"
-              alt="shield-check.png"
-              width="20"
-              height="20"
-              
-            />
-          </div>
-          <div class="header-text-container">
-            <span class="header-text"> Please verify your Precision survey </span>
-          </div>
-          <div class="section-container">
-            <span class="section-text"
-              >Verify now to get started in your Precision survey by clicking below.</span
-            >
-          </div>
-        </div>
-        <div class="btn-container">
-            <a class="primary-button" href="${verificationLink}"><span>Verify Now</span> </a>
-          </div>
-        <div>
-            <hr class="divider"></hr>
-        </div>
-        <div class="footer-container">
-            <span class="footer-text"
-              >You've received this email because you registered for the {Campaign Name} by {Client}. Please refer to the {Giveaway's} Terms and Conditions for details.</span
-            >
-          </div>
-      </div>
-    </div>
-  </body>
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #e8f1fc;">
+  <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%; background-color: #e8f1fc;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td bgcolor="#001044" style="padding: 20px 10px;">
+              <img src="${process.env.NEXT_PUBLIC_APP_URL}images/precision-light.png" alt="precision-light.png" width="120" height="30" style="max-width: 150px; display: block; margin: 0 auto;" />
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#ffffff" style="padding: 40px 30px;">
+              <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <div style="text-align: center;">
+                      <img src="${process.env.NEXT_PUBLIC_APP_URL}images/Shield-check.png" alt="shield-check.png" width="20" height="20" style="margin-bottom: 20px;" />
+                    </div>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                      <h2 style="color: #001044; font-size: 24px; font-weight: 700; margin: 0;">Please verify your Precision survey</h2>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                      <p style="color: #001044; font-size: 14px; font-weight: 400; margin: 0;">Verify now to get started in your Precision survey by clicking below.</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <table border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+                      <tr>
+                        <td align="center" bgcolor="#297afc" style="border-radius: 20px;">
+                          <a href="${verificationLink}" style="display: inline-block; padding: 12px 24px; font-size: 16px; color: #ffffff; text-decoration: none; font-weight: 700;">Verify Now</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 40px;">
+                    <hr style="border: none; border-top: 1px solid #ccc; width: 100%; margin: 0 auto;">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 20px;">
+                    <p style="color: #297afc; font-size: 12px; font-weight: 400; margin: 0;">You've received this email because you registered for the {Campaign Name} by {Client}. Please refer to the {Giveaway's} Terms and Conditions for details.</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
 </html>
-
 `;

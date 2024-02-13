@@ -1,7 +1,7 @@
 import { couponAlertTemplate, emailVerificationTemplate } from './emailTemplates';
 import * as nodemailer from 'nodemailer';
 import headerLogo from '~/public/images/precision-light.png';
-import shieldLogo from '~/public/images/Shield check.png';
+import shieldLogo from '~/public/images/Shield-check.png';
 import { getVerifyEmailTemplate } from '../helper';
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || '';
 // import sgMail from '@sendgrid/mail';
