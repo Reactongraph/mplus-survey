@@ -27,6 +27,7 @@ const DashboardLayout = ({
     if (response) {
       router.push('/admin/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
 
   return (

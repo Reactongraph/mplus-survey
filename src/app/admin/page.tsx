@@ -23,6 +23,7 @@ const LoginForm = () => {
       // sessionStorage.setItem('adminEmail', response.data.email);
       router.push('/admin/dashboard/user');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
 
   return (

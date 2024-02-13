@@ -13,6 +13,7 @@ const User = () => {
 
   useEffect(() => {
     request('GET', 'user/list');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
