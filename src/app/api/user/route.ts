@@ -28,21 +28,15 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  /* eslint-disable no-console */
   const url = new URL(req.url);
-  // console.log('query', req.url);
   const token = getTokenValue(url.search);
-  // console.log('token', token);
   const userId = await decryptText(String(token));
-  // console.log('userId', token);
   try {
     await dbConnect();
     let response = await User.findOne({ _id: userId }).select({ profilingQuestions: 0 });
     const hasTransaction = await Coupon.findOne({ userId });
     return NextResponse.json({ data: response, hasTransaction: hasTransaction }, { status: 200 });
   } catch (e) {
-    /* eslint-disable no-console */
-    // console.log('error check', e);
     return NextResponse.json(e, { status: 500 });
   }
 }

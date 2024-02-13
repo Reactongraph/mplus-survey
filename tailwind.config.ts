@@ -35,6 +35,9 @@ const config: Config = {
         },
         blue7: {
           DEFAULT: '#001044'
+        },
+        success: {
+          DEFAULT: '#5cb85c'
         }
       }
     },

@@ -2,9 +2,13 @@ import jwt from 'jsonwebtoken';
 import dbConnect from '~/db/db';
 import Coupon from '~/models/coupon';
 const couponThreshold = process.env.NEXT_PUBLIC_COUPON_THRESHOLD || '';
-import CryptoJS from 'crypto-js';
+// import CryptoJS from 'crypto-js';
 import fs from 'fs';
 import path from 'path';
+import bcrypt from 'bcryptjs';
+import { NextResponse } from 'next/server';
+import Admin from '~/models/admin';
+import { cookies } from 'next/headers';
 
 const key = process.env.NEXT_PUBLIC_SECRET_KEY || '';
 
@@ -61,4 +65,40 @@ export const decryptText = async (token: string) => {
   const data = await jwt.verify(token, process.env.NEXT_PUBLIC_JWT_KEY || '');
   // @ts-ignore
   return data?._id;
+};
+
+export const hashPassword = async (password: string) => {
+  let hashedPassword = await bcrypt.hash(password, 10);
+  return hashedPassword;
+};
+
+export const comparePassword = async (passRecieved: string, passInDB: string) => {
+  return await bcrypt.compare(passRecieved, passInDB);
+};
+
+export const attachAdminSession = (session: string) => {
+  cookies().set('admin-session', session, {
+    expires: Date.now() + +(process.env.NEXT_PUBLIC_ADMIN_SESSION_EXPIRATION_TIME || 30000)
+  });
+};
+
+export const validateAdminSession = async () => {
+  try {
+    const sessionToken = cookies().get('admin-session');
+    if (!sessionToken || !sessionToken?.value) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+    const adminId = await decryptText(sessionToken.value);
+    const adminData = await Admin.findById(adminId);
+    if (!adminData) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    // updating session ---
+    const newSession = await encryptText(adminData._id);
+    attachAdminSession(newSession);
+    return adminData;
+  } catch (e) {
+    return NextResponse.json(e, { status: 500 });
+  }
 };

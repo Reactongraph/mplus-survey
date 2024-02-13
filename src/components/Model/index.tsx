@@ -5,11 +5,13 @@ import { ReactNode } from 'react';
 const Modal = ({
   isOpen,
   onClose,
-  children
+  children,
+  width = 80
 }: {
   children: ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  width?: number;
 }) => {
   return (
     <>
@@ -19,7 +21,7 @@ const Modal = ({
           onClick={onClose}
         >
           <div
-            className='mx-auto my-12 p-6 bg-white rounded-lg w-80'
+            className={`mx-auto my-12 p-6 bg-white rounded-lg w-${width}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* <button onClick={onClose}>close</button> */}
