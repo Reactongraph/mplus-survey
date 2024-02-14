@@ -30,6 +30,10 @@ const DashboardLayout = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
 
+  const handleNavigation = (path: any) => {
+    router.push(path);
+  };
+
   return (
     <div className='pb-5'>
       <nav className='bg-white border-gray-200 dark:bg-blue7'>
@@ -105,14 +109,21 @@ const DashboardLayout = ({
           >
             <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 '>
               <li>
-                <Link href='/admin/dashboard/user' className='block py-2 px-3 text-white'>
+                <button
+                  onClick={() => handleNavigation('/admin/dashboard/user')}
+                  className='block py-2 px-3 text-white'
+                >
                   User
-                </Link>
+                </button>
               </li>
+              <li className='md:hidden border-t border-gray-300 w-full mt-2 mb-2'></li>
               <li>
-                <Link href='/admin/dashboard/coupon' className='block py-2 px-3 text-white'>
+                <button
+                  onClick={() => handleNavigation('/admin/dashboard/coupon')}
+                  className='block py-2 px-3 text-white'
+                >
                   Coupon
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

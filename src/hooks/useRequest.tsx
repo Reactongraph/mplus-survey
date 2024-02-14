@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const useRequest = () => {
   const [response, setResponse] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [method, setMethod] = useState('');
 
   const request = (
     method: 'POST' | 'GET' | 'PATCH' | 'DELETE',
@@ -18,6 +19,7 @@ const useRequest = () => {
     }
 
     let url = `${process.env.NEXT_PUBLIC_API_URL}${path}`;
+    setMethod(method);
     let config = {
       method,
       url,
@@ -41,7 +43,8 @@ const useRequest = () => {
   return {
     request,
     response,
-    isLoading
+    isLoading,
+    method
   };
 };
 

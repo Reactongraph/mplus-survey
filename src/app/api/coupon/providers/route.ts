@@ -8,9 +8,7 @@ export async function GET() {
     const response = await Coupon.aggregate([
       {
         $match: {
-          userId: {
-            $exists: false
-          }
+          $or: [{ couponId: { $exists: true } }, { couponId: null }]
         }
       },
       {

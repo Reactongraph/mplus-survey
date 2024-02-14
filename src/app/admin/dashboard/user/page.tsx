@@ -5,6 +5,7 @@ import Modal from '@/components/Model';
 import useRequest from '@/hooks/useRequest';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { CSVLink } from 'react-csv';
 
 const User = () => {
   const { request, response, isLoading } = useRequest();
@@ -21,11 +22,32 @@ const User = () => {
       setList(response.data);
     }
   }, [response]);
+
+  const csvData = list.map((elem: any) => {
+    const profilingQuestions = elem?.profilingQuestions || [];
+
+    const profilingFields: any = {};
+
+    profilingQuestions.forEach((question: any, index: any) => {
+      profilingFields[`Q${index + 1}`] = question.answer;
+    });
+
+    return {
+      Email: elem.email,
+      Status: elem?.coupon ? 'Completed' : 'Not Completed',
+      'Completed On': elem?.surveyCompleteDate
+        ? moment(elem.surveyCompleteDate).format('YYYY-MM-DD')
+        : '',
+      Coupon: elem?.coupon?.code || '',
+      Answers: elem?.coupon ? 'View' : '',
+      ...profilingFields
+    };
+  });
   return (
     <>
       {isLoading && <FullScreenLoader />}
       <div className='pt-8'>
-        <h2 className='text-center font-semibold  text-lg'>Users</h2>
+        <h2 className='text-center font-semibold  text-2xl'>Users</h2>
         <div
           style={{
             display: 'flex',
@@ -37,6 +59,16 @@ const User = () => {
             style={{ width: '90%', maxWidth: '1000px' }}
             className='relative overflow-x-auto shadow-md sm:rounded-lg'
           >
+            <div className='flex justify-end'>
+              <button
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                onClick={() => {}}
+              >
+                <CSVLink data={csvData} filename={'Users.csv'}>
+                  Export CSV
+                </CSVLink>
+              </button>
+            </div>
             <table className='w-full text-sm text-left rtl:text-right '>
               <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-blue7 dark:text-gray-400'>
                 <tr>
