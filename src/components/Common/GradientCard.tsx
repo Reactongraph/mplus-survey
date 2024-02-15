@@ -20,7 +20,7 @@ const GradientCard = ({
   return (
     <div
       className='bg-gradient-to-br from-blue6 to-blue7 w-full py-10 px-4 md:px-8'
-      style={{ height: '80svh' }}
+      style={{ height: '100svh' }}
     >
       <VerticalApart height='80svh'>
         <div>

@@ -12,7 +12,7 @@ export default function WelcomeCard({
   return (
     <div
       className='p-5 pt-20 flex flex-col items-center bg-landingPrimary bg-cover bg-center bg-no-repeat landingPrimary'
-      style={{ height: '80svh' }}
+      style={{ height: '100svh' }}
     >
       <VerticalApart height='80svh'>
         <div>

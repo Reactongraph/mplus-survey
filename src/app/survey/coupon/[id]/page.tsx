@@ -35,7 +35,7 @@ const Coupon = ({ params }: { params: { id: string } }) => {
   };
   return (
     <GradientCard
-      image={couponData?.image}
+      image={couponData?.image ? couponData?.image : '/images/noimage.jpg'}
       title='Winner!'
       subTitle='You’ve won! Use the prize code below at online checkout to redeem your prize.'
       enableImageBackground={true}
@@ -43,25 +43,22 @@ const Coupon = ({ params }: { params: { id: string } }) => {
       <div className='relative'>
         {couponData?.code && (
           <>
-            <div className='border border-white px-5 py-2 rounded-full text-white text-base'>
+            <div className='border border-white rounded-full text-white text-base flex justify-between items-center pl-5'>
               {couponData.code}
-            </div>
-            <div
-              style={{
-                width: 'fit-content',
-                position: 'absolute',
-                top: -1,
-                right: -1
-              }}
-            >
-              <Button
-                rounded={true}
-                varient='v1'
-                handler={() => handleCopy(couponData.code)}
-                textTransform='capitalize'
+              <div
+                style={{
+                  width: 'fit-content'
+                }}
               >
-                {isCopied ? 'Copied !' : 'Copy'}
-              </Button>
+                <Button
+                  rounded={true}
+                  varient='v1'
+                  handler={() => handleCopy(couponData.code)}
+                  textTransform='capitalize'
+                >
+                  {isCopied ? 'Copied !' : 'Copy'}
+                </Button>
+              </div>
             </div>
           </>
         )}
