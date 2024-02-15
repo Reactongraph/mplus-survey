@@ -18,8 +18,11 @@ const GradientCard = ({
   enableImageBackground = false
 }: GradientCardPropType) => {
   return (
-    <div className='bg-gradient-to-br from-blue6 to-blue7 min-h-screen w-full py-10 px-4 md:px-8'>
-      <VerticalApart height='600px'>
+    <div
+      className='bg-gradient-to-br from-blue6 to-blue7 w-full py-10 px-4 md:px-8'
+      style={{ height: '80svh' }}
+    >
+      <VerticalApart height='80svh'>
         <div>
           {image && (
             <div className='flex justify-center'>

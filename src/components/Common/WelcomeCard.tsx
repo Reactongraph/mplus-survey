@@ -10,8 +10,11 @@ export default function WelcomeCard({
   subTitle: string;
 }) {
   return (
-    <div className='p-5 pt-20 flex min-h-screen flex-col items-center bg-landingPrimary bg-cover bg-center bg-no-repeat landingPrimary'>
-      <VerticalApart height='550px'>
+    <div
+      className='p-5 pt-20 flex flex-col items-center bg-landingPrimary bg-cover bg-center bg-no-repeat landingPrimary'
+      style={{ height: '80svh' }}
+    >
+      <VerticalApart height='80svh'>
         <div>
           <div className='flex justify-center items-center'>
             <Image src='/images/giftbox.png' alt='giftbox' height={180} width={180} />

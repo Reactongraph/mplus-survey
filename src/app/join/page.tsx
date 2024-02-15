@@ -17,7 +17,7 @@ const Join = ({ login, isLoading }: any) => {
     login(email);
   };
   return (
-    <div className='bg-blue2 min-h-screen p-8'>
+    <div className='bg-blue2 p-8' style={{ minHeight: '90svh' }}>
       <VerticalApart height='90vh'>
         <div>
           <div className='relative text-center font-semibold mb-8'>

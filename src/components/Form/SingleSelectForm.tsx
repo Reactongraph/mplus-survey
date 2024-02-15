@@ -46,7 +46,7 @@ const SingleSelectForm = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
   return (
-    <VerticalApart height='500px'>
+    <VerticalApart height='80svh'>
       <div>
         <FormQuestion text={question} />
         <OptionList>
