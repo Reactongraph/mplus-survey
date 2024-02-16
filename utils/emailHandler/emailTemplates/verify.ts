@@ -55,7 +55,7 @@ export const emailVerificationTemplate = (verificationLink: string) => `<html>
                 </tr>
                 <tr>
                   <td align="center" style="padding-top: 20px;">
-                    <p style="color: #297afc; font-size: 12px; font-weight: 400; margin: 0;">You've received this email because you registered for the {Campaign Name} by {Client}. Please refer to the {Giveaway's} Terms and Conditions for details.</p>
+                  <p style="color: rgba(0, 0, 255, 0.5); font-size: 12px; font-weight: 400; margin: 0; ">You've received this email because you registered for the Precision Survey by Precision. Please refer to the Precision's Terms and Conditions for details.</p>
                   </td>
                 </tr>
               </table>

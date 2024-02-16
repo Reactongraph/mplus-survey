@@ -8,6 +8,7 @@ type GradientCardPropType = {
   title?: string;
   subTitle?: string;
   enableImageBackground?: boolean;
+  css?: boolean;
 };
 
 const GradientCard = ({
@@ -15,7 +16,8 @@ const GradientCard = ({
   image,
   title,
   subTitle,
-  enableImageBackground = false
+  enableImageBackground = false,
+  css = false
 }: GradientCardPropType) => {
   return (
     <div
@@ -35,8 +37,22 @@ const GradientCard = ({
               </div>
             </div>
           )}
-          {title && <h1 className='text-white text-4xl font-bold text-center mt-8'>{title}</h1>}
-          {subTitle && <p className='text-white text-base text-center mt-4'>{subTitle}</p>}
+          {title && (
+            <h1
+              className={`text-white ${css ? 'text-5xl' : 'text-4xl'} font-bold text-center ${css ? '' : 'mt-8'}`}
+            >
+              {title}
+            </h1>
+          )}
+          {subTitle && (
+            <div className={`${css ? 'text-center' : ''}`}>
+              <p
+                className={`text-white text-base text-center mt-4 ${css ? 'inline-block w-[200px]' : ''}`}
+              >
+                {subTitle}
+              </p>
+            </div>
+          )}
         </div>
         <div>{children}</div>
       </VerticalApart>

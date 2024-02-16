@@ -21,7 +21,7 @@ const Modal = ({
           onClick={onClose}
         >
           <div
-            className={`mx-auto my-12 p-6 bg-white rounded-lg w-${width}`}
+            className={`mx-auto p-6 bg-white rounded-lg  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-${width}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* <button onClick={onClose}>close</button> */}

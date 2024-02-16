@@ -11,6 +11,7 @@ type ButtonPropsType = {
   As?: React.ElementType;
   loading?: boolean;
   otherProps?: any;
+  addFlex?: boolean;
 };
 
 const varientColorMap: any = {
@@ -43,6 +44,7 @@ const Button = ({
   textTransform = 'uppercase',
   As: Component = 'button',
   loading = false,
+  addFlex = false,
   otherProps = {}
 }: ButtonPropsType) => {
   const bgColor = disabled
@@ -52,7 +54,7 @@ const Button = ({
 
   return (
     <Component
-      className={`py-3 px-5 ${rounded ? 'rounded-full' : 'rounded-md'} ${color} ${textTransform === 'none' ? '' : textTransform} font-semibold ${bgColor}`}
+      className={`${addFlex ? `` : `py-3`} px-5 ${rounded ? 'rounded-full' : 'rounded-md'} ${color} ${textTransform === 'none' ? '' : textTransform} font-semibold ${bgColor}   ${addFlex ? 'flex items-center' : ``}  `}
       disabled={disabled}
       onClick={handler}
       {...otherProps}

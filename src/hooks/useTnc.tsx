@@ -23,7 +23,7 @@ const useTnc = () => {
             <Link style={{ color: 'blue' }} href='/terms-conditions'>
               Terms of Use
             </Link>{' '}
-            of SmartMedia Technologies.
+            of Precision.
           </p>
         </div>
         <div className='flex items-center gap-6'>
