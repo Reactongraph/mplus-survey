@@ -30,7 +30,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
             href: `/survey/1?token=${token}`
           }}
         >
-          Start <span style={{ fontSize: '30px' }}>→</span>
+          Start <span style={{ fontSize: '30px', position: 'relative', bottom: '1px' }}>→</span>
         </Button>
       </div>
     </GradientCard>
