@@ -14,24 +14,21 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
       subTitle='Complete the survey questions to earn a prize!'
       css={true}
     >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center'
-        }}
-      >
-        <Button
-          rounded={true}
-          varient='v3'
-          addFlex={true}
-          handler={() => {}}
-          As={Link}
-          otherProps={{
-            href: `/survey/1?token=${token}`
-          }}
-        >
-          Start <span style={{ fontSize: '30px', position: 'relative', bottom: '1px' }}>→</span>
-        </Button>
+      <div className='flex justify-center'>
+        <div>
+          <Button
+            rounded={true}
+            varient='v3'
+            addFlex={true}
+            handler={() => {}}
+            As={Link}
+            otherProps={{
+              href: `/survey/1?token=${token}`
+            }}
+          >
+            Start <span className='text-3xl relative top-[2px]'>→</span>
+          </Button>
+        </div>
       </div>
     </GradientCard>
   );
