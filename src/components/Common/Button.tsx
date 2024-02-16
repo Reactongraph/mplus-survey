@@ -12,6 +12,7 @@ type ButtonPropsType = {
   loading?: boolean;
   otherProps?: any;
   addFlex?: boolean;
+  addPadding?: string;
 };
 
 const varientColorMap: any = {
@@ -45,7 +46,8 @@ const Button = ({
   As: Component = 'button',
   loading = false,
   addFlex = false,
-  otherProps = {}
+  otherProps = {},
+  addPadding = ''
 }: ButtonPropsType) => {
   const bgColor = disabled
     ? varientColorMap[varient].disabledBgColor
@@ -54,7 +56,7 @@ const Button = ({
 
   return (
     <Component
-      className={`${addFlex ? `` : `py-3`} px-5 ${rounded ? 'rounded-full' : 'rounded-md'} ${color} ${textTransform === 'none' ? '' : textTransform} font-semibold ${bgColor}   ${addFlex ? 'flex items-center' : ``}  `}
+      className={`${addFlex ? `` : `py-3`} px-5 ${rounded ? 'rounded-full' : 'rounded-md'} ${color} ${textTransform === 'none' ? '' : textTransform} font-semibold ${bgColor}   ${addFlex ? 'flex items-center' : ``} ${addPadding}  `}
       disabled={disabled}
       onClick={handler}
       {...otherProps}

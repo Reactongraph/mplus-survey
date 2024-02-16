@@ -27,6 +27,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
       image='/images/giftbox.png'
       title='Congrats!'
       subTitle='Pick a prize from the options below...'
+      addHeight={true}
     >
       <div className='flex justify-center gap-10'>
         {providerList.map((coupon) => {
@@ -34,6 +35,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
             <Button
               key={coupon._id}
               rounded={true}
+              addPadding={'py-3'}
               varient='v3'
               handler={() => {}}
               textTransform='capitalize'

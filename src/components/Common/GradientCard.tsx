@@ -9,6 +9,7 @@ type GradientCardPropType = {
   subTitle?: string;
   enableImageBackground?: boolean;
   css?: boolean;
+  addHeight?: boolean;
 };
 
 const GradientCard = ({
@@ -17,14 +18,15 @@ const GradientCard = ({
   title,
   subTitle,
   enableImageBackground = false,
-  css = false
+  css = false,
+  addHeight = false
 }: GradientCardPropType) => {
   return (
     <div
       className='bg-gradient-to-br from-blue6 to-blue7 w-full py-10 px-4 md:px-8'
       style={{ height: '100svh' }}
     >
-      <VerticalApart height='80svh'>
+      <VerticalApart height={`${addHeight ? '90svh' : '80svh'}`}>
         <div>
           {image && (
             <div className='flex justify-center'>
