@@ -19,14 +19,14 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
           <Button
             rounded={true}
             varient='v3'
-            addFlex={true}
+            addFlex={false}
             handler={() => {}}
             As={Link}
             otherProps={{
               href: `/survey/1?token=${token}`
             }}
           >
-            Start <span className='text-3xl relative top-[2px]'>→</span>
+            Start <span className='text-3xl'>→</span>
           </Button>
         </div>
       </div>
