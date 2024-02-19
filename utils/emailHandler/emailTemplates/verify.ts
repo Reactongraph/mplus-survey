@@ -18,7 +18,7 @@ export const emailVerificationTemplate = (verificationLink: string) => `<html>
         <table role="presentation" width="600" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td bgcolor="#001044" style="padding: 20px 10px;">
-              <img src="${process.env.NEXT_PUBLIC_APP_URL}images/precision-light.png" alt="precision-light.png" width="120" height="30" style="max-width: 150px; display: block; margin: 0 auto;" />
+              <img src="${process.env.NEXT_PUBLIC_APP_URL}images/logo.png" alt="precision-light.png" width="120" height="30" style="max-width: 150px; display: block; margin: 0 auto;" />
             </td>
           </tr>
           <tr>
@@ -55,7 +55,7 @@ export const emailVerificationTemplate = (verificationLink: string) => `<html>
                 </tr>
                 <tr>
                   <td align="center" style="padding-top: 20px;">
-                  <p style="color: rgba(0, 0, 255, 0.5); font-size: 12px; font-weight: 400; margin: 0; ">You've received this email because you registered for the Precision Survey by Precision. Please refer to the Precision's Terms and Conditions for details.</p>
+                  <p style="color: rgba(41, 122, 252, 0.5); font-size: 12px; font-weight: 400; margin: 0; ">You've received this email because you registered for the Precision Survey by Precision. Please refer to the Precision's Terms and Conditions for details.</p>
                   </td>
                 </tr>
               </table>

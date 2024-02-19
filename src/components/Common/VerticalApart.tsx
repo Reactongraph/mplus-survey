@@ -4,7 +4,8 @@ const VerticalApart = ({ children, height }: { children: ReactNode; height: stri
   return (
     <div
       style={{
-        minHeight: height
+        minHeight: height,
+        padding: '1rem'
       }}
       className={`flex flex-col justify-between`}
     >

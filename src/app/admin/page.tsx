@@ -30,12 +30,7 @@ const LoginForm = () => {
     <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
       <div className='w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue1 dark:border-gray-700'>
         <div className='bg-gradient-to-r from-blue7 to-blue5 h-36 flex items-center justify-center'>
-          <Image
-            src='/images/precision-light.png'
-            alt='precision-light.png'
-            width={185.5}
-            height={49}
-          />
+          <Image src='/images/logo.png' alt='precision-light.png' width={185.5} height={49} />
         </div>
         <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
           <h1 className='text-xl font-bold leading-tight tracking-tight  md:text-2xl '>
