@@ -23,9 +23,12 @@ export const userEmailVerificationMail = async (email: string, token: string) =>
   }
 };
 
-export const couponAlertMail = async (couponId: string) => {
+export const couponAlertMail = async (availableCount: any) => {
   try {
-    await sentMail(adminEmail, `Add coupon for ${couponId}`, couponAlertTemplate(couponId));
+    const subject = `Alert`;
+    const content = couponAlertTemplate(availableCount);
+
+    await sentMail(adminEmail, subject, content);
   } catch (error: any) {
     throw new Error(error);
   }

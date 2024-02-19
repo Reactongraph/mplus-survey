@@ -3,6 +3,8 @@ import Coupon from '~/models/coupon';
 export const dynamic = 'force-dynamic';
 import { NextResponse, NextRequest } from 'next/server';
 import User from '~/models/user';
+import { couponAlertMail } from '~/utils/emailHandler/emailHandler';
+const couponThreshold = process.env.NEXT_PUBLIC_COUPON_THRESHOLD || '';
 
 export async function GET() {
   try {
@@ -58,6 +60,13 @@ export async function PATCH(req: NextRequest) {
           }
         }
       );
+    }
+    const availableCount = await Coupon.countDocuments({
+      userId: { $exists: false }
+    });
+
+    if (Number(availableCount) < Number(couponThreshold)) {
+      await couponAlertMail(availableCount);
     }
 
     return NextResponse.json({ data: coupon, status: 200 });
