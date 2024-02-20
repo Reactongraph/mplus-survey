@@ -6,6 +6,8 @@ import FormSubmit from '../Common/FormSubmit';
 import OptionList from '../Common/OptionList';
 import VerticalApart from '../Common/VerticalApart';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+
 import useRequest from '@/hooks/useRequest';
 
 const SingleSelectForm = ({
@@ -36,13 +38,24 @@ const SingleSelectForm = ({
   };
 
   useEffect(() => {
-    if (response) {
-      if (step < 6) {
-        router.push(`/survey/${+step + 1}?token=${token}`);
-      } else {
-        router.push(`/survey/coupon?token=${token}`);
+    async function call() {
+      if (response) {
+        if (step < 6) {
+          router.push(`/survey/${+step + 1}?token=${token}`);
+        } else {
+          await request('GET', `coupon/providers`);
+          if (response === null || response.length === 0) {
+            toast.error('Contact admin: No coupons left.');
+          } else {
+            if (response) {
+              router.push(`/survey/coupon?token=${token}`);
+            }
+          }
+        }
       }
     }
+
+    call();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
   return (
