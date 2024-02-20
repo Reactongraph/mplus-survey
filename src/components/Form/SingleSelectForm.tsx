@@ -43,13 +43,13 @@ const SingleSelectForm = ({
         if (step < 6) {
           router.push(`/survey/${+step + 1}?token=${token}`);
         } else {
-          await request('GET', `coupon/providers`);
-          if (response === null || response.length === 0) {
-            toast.error('Contact admin: No coupons left.');
+          // Assuming response.data is the property containing the data value
+          const dataValue = response.data;
+
+          if (dataValue > 0) {
+            router.push(`/survey/coupon?token=${token}`);
           } else {
-            if (response) {
-              router.push(`/survey/coupon?token=${token}`);
-            }
+            toast.error('Contact admin: No coupons left.');
           }
         }
       }
