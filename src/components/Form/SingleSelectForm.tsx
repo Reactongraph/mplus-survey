@@ -49,7 +49,7 @@ const SingleSelectForm = ({
           if (dataValue > 0) {
             router.push(`/survey/coupon?token=${token}`);
           } else {
-            toast.error('Contact admin: No coupons left.');
+            toast.info('Contact admin: No coupons to redeem.');
           }
         }
       }
