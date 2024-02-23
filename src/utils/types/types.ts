@@ -11,7 +11,6 @@ export type SelectionChipPropType = {
   handler?: () => void;
 };
 
-
 export type formQuestionOptionsType = {
   id: string;
   text: string;
