@@ -40,6 +40,8 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
               handler={() => {}}
               textTransform='capitalize'
               As={Link}
+              fontSize={'14px'}
+              paddingX={'px-4'}
               addFlex={true}
               otherProps={{
                 href: `/survey/coupon/${coupon._id}?token=${token}`
