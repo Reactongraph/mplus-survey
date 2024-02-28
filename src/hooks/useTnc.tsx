@@ -35,7 +35,7 @@ const useTnc = () => {
         </div> */}
       </div>
     ),
-    isAccepted: isFirstSelected 
+    isAccepted: isFirstSelected
   };
 };
 
