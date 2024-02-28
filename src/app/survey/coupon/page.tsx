@@ -26,8 +26,8 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
     <GradientCard
       image='/images/giftbox.png'
       title='Congrats!'
-      subTitle='Pick a prize from the options below...'
-      addHeight={true}
+      subTitle='Pick a gift card of your choice from the options below.'
+      // addHeight={true}
     >
       <div className='flex justify-center gap-10'>
         {providerList.map((coupon) => {

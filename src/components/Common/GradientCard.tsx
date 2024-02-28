@@ -49,7 +49,7 @@ const GradientCard = ({
           {subTitle && (
             <div className={`${css ? 'text-center' : ''}`}>
               <p
-                className={`text-white text-base text-center mt-4 ${css ? 'inline-block w-[200px]' : ''}`}
+                className={`text-white text-base text-center mt-4 ${css ? 'inline-block w-[270px]' : ''}`}
               >
                 {subTitle}
               </p>
