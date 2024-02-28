@@ -27,7 +27,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
       image='/images/giftbox.png'
       title='Congrats!'
       subTitle='Pick a gift card of your choice from the options below.'
-      // addHeight={true}
+      addHeight={true}
     >
       <div className='flex justify-center gap-10'>
         {providerList.map((coupon) => {
@@ -45,7 +45,7 @@ const Result = ({ searchParams }: { searchParams: { token: string } }) => {
                 href: `/survey/coupon/${coupon._id}?token=${token}`
               }}
             >
-              {coupon.provider}
+              {`${coupon.provider}$5`}
             </Button>
           );
         })}
