@@ -10,7 +10,7 @@ const couponSchema: any = new Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'User',
       unique: true,
-      default: null
+      // default: null
     },
     redeemDate: {
       type: Date
