@@ -31,8 +31,8 @@ const MultiSelectForm = ({
   const { request, response, isLoading } = useRequest();
   const handleSubmit = () => {
     let answer = '';
-    options2.forEach((elem) => {
-      answer += `${elem.id} - ${elem.text}, `;
+    options2.forEach((elem, index) => {
+      answer += `${index + 1} - ${elem.text}, `;
     });
     answer = answer.slice(0, answer.length - 2);
     request('PATCH', `user`, {
@@ -40,7 +40,6 @@ const MultiSelectForm = ({
       surveyStep: step
     });
   };
-
   useEffect(() => {
     if (response) {
       if (step < 6) {
@@ -118,7 +117,7 @@ const MultiSelectForm = ({
       </div>
       <FormSubmit
         loading={isLoading}
-        disabled={selections.length <= 0}
+        disabled={!(options1.length === 0) || !(options2.length >= 3)}
         handler={() => handleSubmit()}
       />
     </VerticalApart>

@@ -1,6 +1,6 @@
 export type SelectOptionPropType = {
   children: string;
-  isActive?: string;
+  isActive?: any;
   serialNumber: number;
   handler: () => void;
 };

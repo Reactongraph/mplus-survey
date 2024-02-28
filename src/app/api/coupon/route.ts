@@ -41,6 +41,31 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function PUT(req: NextRequest, res: NextResponse) {
+  try {
+    const { csvData } = await req.json();
+
+    if (!Array.isArray(csvData)) {
+      return NextResponse.json({ error: 'Invalid CSV data: Expected an array' }, { status: 400 });
+    }
+    let recordsAdded = 0;
+    for (const item of csvData) {
+      const existingCoupon = await Coupon.findOne({ code: item.Code });
+      if (existingCoupon) {
+        continue;
+      }
+      await Coupon.create({
+        code: item.Code,
+        provider: item.Provider
+      });
+      recordsAdded++;
+    }
+    return NextResponse.json({ data: recordsAdded }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
 export async function PATCH(req: NextRequest) {
   try {
     const id = req.cookies.get('userId');
